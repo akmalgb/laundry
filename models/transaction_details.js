@@ -14,13 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   transaction_details.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     transaction_id: DataTypes.INTEGER,
     package_id: DataTypes.INTEGER,
     quantity: DataTypes.DOUBLE
   }, {
     sequelize,
     modelName: 'transaction_details',
+    tableName: 'transaction_details'
   });
   return transaction_details;
 };

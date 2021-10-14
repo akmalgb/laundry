@@ -14,13 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   members.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     name: DataTypes.STRING,
     gender: DataTypes.STRING,
     telephone: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'members',
+    tableName: 'members'
   });
   return members;
 };

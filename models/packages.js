@@ -14,12 +14,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   packages.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     type: DataTypes.STRING,
     price: DataTypes.DOUBLE
   }, {
     sequelize,
     modelName: 'packages',
+    tableName: 'packages'
   });
   return packages;
 };

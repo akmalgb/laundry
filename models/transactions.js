@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   transactions.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     member_id: DataTypes.INTEGER,
     date: DataTypes.DATE,
     date_limit: DataTypes.DATE,
@@ -25,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'transactions',
+    tableName: 'transactions'
   });
   return transactions;
 };
