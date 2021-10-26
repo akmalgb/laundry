@@ -30,11 +30,58 @@ app.post("/", (request, response) => {
     member.create(newMember)
     .then(result => {
         response.json({
-            message: `Data added`
+            message: `Data Added Successfully`
         })
     })
     .catch(error => {
         response.json({
+            message: error.message
+        })
+    })
+})
+
+//endpoint update member
+app.put("/:id", (request, response) => {
+    let data = {
+        name: request.body.name,
+        address: request.body.address,
+        telephone: request.body.telephone,
+        gender: request.body.gender
+    }
+
+    let parameter = {
+        id: request.params.id
+    }
+
+    member.update(data, {where: parameter})
+    .then(result => {
+        return response.json({
+            message: `Data Updated Successfully`,
+            data: result
+        })
+    })
+
+    .catch(error => {
+        return response.json({
+            message: error.message
+        })
+    })
+})
+
+//endpoint delete member
+app.delete("/:id", (request, response) => {
+    let parameter = {
+        id: request.params.id
+    }
+
+    member.destroy({where: parameter})
+    .then(result => {
+        return response.json({
+            message: `Data Deleted Successfully`
+        })
+    })
+    .catch(error => {
+        return response.json({
             message: error.message
         })
     })
