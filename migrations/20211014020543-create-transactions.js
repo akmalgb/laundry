@@ -18,10 +18,10 @@ module.exports = {
       date: {
         type: Sequelize.DATE
       },
-      date_limit: {
+      due_date: {
         type: Sequelize.DATE
       },
-      pay_day: {
+      payment_date: {
         type: Sequelize.DATE
       },
       status: {
