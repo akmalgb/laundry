@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     name: DataTypes.STRING,
+    address: DataTypes.STRING,
     gender: DataTypes.STRING,
     telephone: DataTypes.STRING
   }, {
