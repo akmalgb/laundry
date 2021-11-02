@@ -41,8 +41,11 @@ app.put("/:id", (request, response) => {
     let data = {
         name: request.body.name,
         username: request.body.username,
-        password: md5(request.body.password),
         role: request.body.role
+    }
+
+    if (request.body.password) {
+        data.password = md5(request.body.password)
     }
 
     let parameter = {
