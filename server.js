@@ -5,6 +5,7 @@ const app = express();
 const member = require("./routers/member");
 const package = require("./routers/package");
 const user = require("./routers/user");
+const transaction = require("./routers/transaction");
 
 //call member's router
 app.use("/member", member)
@@ -14,6 +15,9 @@ app.use("/package", package)
 
 //call user's router
 app.use("/user", user)
+
+//call transaction's router
+app.use("/transaction", transaction)
 
 app.listen(8000, () => {
     console.log('Server berlari kencang di port 8000');
