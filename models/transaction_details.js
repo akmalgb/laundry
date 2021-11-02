@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.packages,{
+        foreignKey: "package_id", as: "package"
+      })
     }
   };
   transaction_details.init({
@@ -19,8 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    transaction_id: DataTypes.INTEGER,
-    package_id: DataTypes.INTEGER,
+    package_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    transaction_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     quantity: DataTypes.DOUBLE
   }, {
     sequelize,
