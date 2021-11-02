@@ -10,7 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.members,{
+        foreignKey: "member_id", as: "member"
+      })
+      this.belongsTo(models.users,{
+        foreignKey: "user_id", as: "user"
+      })
+      this.hasMany(models.transaction_details,{
+        foreignKey: "transaction_id", as: "transactionDetail"
+      })
     }
   };
   transactions.init({
@@ -21,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     member_id: DataTypes.INTEGER,
     date: DataTypes.DATE,
-    date_limit: DataTypes.DATE,
-    pay_day: DataTypes.DATE,
+    due_date: DataTypes.DATE,
+    payment_date: DataTypes.DATE,
     status: DataTypes.INTEGER,
     paid: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER
