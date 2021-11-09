@@ -8,6 +8,10 @@ app.use(express.json())
 const models = require("../models/index")
 const user = models.users
 
+// authorization
+const {auth} = require("./login")
+app.use(auth)
+
 app.get("/", async (request, response) => {
     let dataUser = await user.findAll()
 

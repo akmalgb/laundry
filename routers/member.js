@@ -2,14 +2,16 @@ const { request, response } = require("express")
 const express = require("express")
 const app = express()
 
-//membaca request dari body dengan tipe json
+//call request from body with json's type
 app.use(express.json())
 
-//memanggil models
+//call member's model
 const models = require("../models/index")
-
-//panggil mode "member"
 const member = models.members
+
+// authorization
+const {auth} = require("./login")
+app.use(auth)
 
 //endpoint for get all member
 app.get("/", async (request, response) => {

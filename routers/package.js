@@ -5,11 +5,13 @@ const app = express()
 //membaca request dari body dengan tipe json
 app.use(express.json())
 
-//memanggil models
+//call package's model
 const models = require("../models/index")
-
-//panggil model "package"
 const package = models.packages
+
+// authorization
+const {auth} = require("./login")
+app.use(auth)
 
 //endpoint for get all package
 app.get("/", async (request, response) => {
