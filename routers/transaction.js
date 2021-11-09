@@ -9,6 +9,10 @@ const models = require("../models/index")
 const transaction = models.transactions
 const transaction_detail = models.transaction_details
 
+// authorization
+const {auth} = require("./login")
+app.use(auth)
+
 //endpoint get transaction
 app.get("/", async (request, response) => {
     let data = await transaction.findAll({
@@ -177,6 +181,27 @@ app.post("/status/:id", (request, response) => {
 })
 
 //endpoint to change payment status
-app.get("/payment/:id")
+app.get("/payment/:id", (request, response) => {
+
+    let parameter = {
+        id: request.params.id
+    }
+
+    let data = {
+        //get today's date
+        payment_date: new Date().toISOString().split("T")[0],
+        paid: true
+    }
+
+    transaction.update(data, {where: parameter})
+    .then(result => {
+        return response.json({
+            message: `transaction has been paid`
+        })
+    })
+    .catch(error => {
+        message = error.message
+    })
+})
 
 module.exports = app
