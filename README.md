@@ -1,4 +1,4 @@
-# laundry
+# NODE JS laundry api
 
     1. $ git clone https://github.com/akmalgb/laundry.git
     2. $ cd laundry
